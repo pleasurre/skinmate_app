@@ -49,3 +49,8 @@ body,.workspace,.phone,#app,.app-header,.main,.footer-action,.bottom-nav{backgro
 .logo-crop img{display:none}
 .logo-crop::before{content:'Skinmate';display:block;color:var(--deep);font:900 30px/43px 'Nunito Sans',sans-serif;letter-spacing:-1.4px}
 .logo-crop::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:var(--coral);left:73px;top:6px}
+.logo-crop{position:relative}
+.logo-smile{position:absolute;left:69px;top:34px;width:34px;height:8px;border-bottom:5px solid var(--coral);border-radius:0 0 30px 30px}
+.header-actions{display:flex;align-items:center;gap:4px}.header-login{padding:7px 10px;border:1px solid var(--mint);border-radius:999px;background:#fff;color:var(--deep);font-size:12px;font-weight:800}.header-actions .icon-button{color:var(--deep)}
+.home-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}.home-content-grid .content-tile{min-height:142px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:14px;background:#fff;border:1px solid var(--line);border-radius:18px}.home-content-grid .content-tile svg{align-self:flex-end;color:var(--deep);width:18px}.home-content-art{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800}.home-content-art.peach{background:#ffe3da;color:#b96e5f}.home-content-art.mint{background:#d9f4ef;color:var(--deep)}
+.login-status{margin:12px 0 0;color:var(--deep);font-size:12px;font-weight:700}
