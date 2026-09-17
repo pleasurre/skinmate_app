@@ -42,3 +42,10 @@ body{background:#eef9f6;color:var(--ink)}
 .abstract-thumb{background:var(--surface);color:var(--deep)}.abstract-thumb.contour{background:#e0f7f2}.abstract-thumb.tone{background:#fff4cf}.abstract-thumb.aging{background:#ffede8}.abstract-thumb.hair{background:#efe8fa}
 .editorial-art{background:linear-gradient(135deg,#e8faf6,#cdf1e9)}.editorial-art.aging{background:linear-gradient(135deg,#fff2ed,#ffe0d6)}.editorial-art.tone{background:linear-gradient(135deg,#fff8dd,#ffefb0)}.editorial-art.hair{background:linear-gradient(135deg,#f4effc,#e7def5)}
 .content-tile{border-color:#e4efec}.info-box{background:var(--surface);color:#5f8179}.info-box strong{color:var(--deep)}
+
+/* Keep the app on a clean white canvas and remove the floating logo plate. */
+body,.workspace,.phone,#app,.app-header,.main,.footer-action,.bottom-nav{background:#fff}
+.logo-crop{background:transparent}
+.logo-crop img{display:none}
+.logo-crop::before{content:'Skinmate';display:block;color:var(--deep);font:900 30px/43px 'Nunito Sans',sans-serif;letter-spacing:-1.4px}
+.logo-crop::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:var(--coral);left:73px;top:6px}
