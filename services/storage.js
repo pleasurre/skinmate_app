@@ -1,5 +1,5 @@
 const SkinmateStorage=(()=>{
- const initial={onboarded:false,profile:{concerns:[],fields:[],region:'강남'},draft:{category:'',concern:'',custom:'',priorities:[],budget:'unknown',region:'강남'},saved:[],savedEvents:[],compare:[],selectedTreatment:'',history:[],recentHospitals:[],recentTreatments:[],checklists:{},notifications:false};
+ const initial={onboarded:false,profile:{concerns:[],fields:[],region:'강남'},draft:{category:'',concern:'',custom:'',priorities:[],budget:'unknown',region:'강남'},saved:[],savedTreatments:{},savedEvents:[],compare:[],selectedTreatment:'',history:[],recentHospitals:[],recentTreatments:[],checklists:{},notifications:false};
  function clean(raw,D){
   const s=structuredClone(initial);if(!raw||typeof raw!=='object')return s;
   const unique=(v,allowed,max=100)=>[...new Set(Array.isArray(v)?v.filter(x=>allowed.includes(x)):[])].slice(0,max);
@@ -8,6 +8,7 @@ const SkinmateStorage=(()=>{
   const d=raw.draft||{};const cat=D.concerns.find(c=>c.id===d.category);s.draft={category:cat?.id||'',concern:cat?.items.includes(d.concern)?d.concern:'',custom:typeof d.custom==='string'?d.custom.slice(0,100):'',priorities:unique(d.priorities,D.criteria.map(c=>c.id),3),budget:D.budgets.some(b=>b.id===d.budget)?d.budget:'unknown',region:D.regions.includes(d.region)?d.region:'강남'};
   const hids=D.hospitals.map(h=>h.id),tids=D.treatments.map(t=>t.id);
   for(const k of ['saved','compare','recentHospitals'])s[k]=unique(raw[k],hids,k==='compare'?3:20);
+  s.savedTreatments=Object.fromEntries(s.saved.map(id=>{const h=D.hospitals.find(h=>h.id===id);return [id,h.treatments.includes(raw.savedTreatments?.[id])?raw.savedTreatments[id]:h.treatments.includes(raw.selectedTreatment)?raw.selectedTreatment:h.treatments[0]];}));
   s.savedEvents=unique(raw.savedEvents,D.promotions.map(p=>p.id));s.recentTreatments=unique(raw.recentTreatments,tids,20);s.selectedTreatment=tids.includes(raw.selectedTreatment)?raw.selectedTreatment:'';
   s.history=(Array.isArray(raw.history)?raw.history:[]).filter(x=>x&&D.concerns.some(c=>c.id===x.category&&c.items.includes(x.concern))).slice(0,10).map(x=>({...clean({draft:x},D).draft,date:typeof x.date==='string'?x.date.slice(0,30):''}));
   for(const [id,list] of Object.entries(raw.checklists&&typeof raw.checklists==='object'?raw.checklists:{})){if(!hids.includes(id)||!Array.isArray(list?.questions))continue;s.checklists[id]={saved:list.saved===true,questions:list.questions.filter(q=>typeof q?.text==='string'&&q.text.trim()).slice(0,100).map(q=>({text:q.text.slice(0,200),done:q.done===true}))};}
