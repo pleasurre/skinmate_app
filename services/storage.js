@@ -1,5 +1,5 @@
 const SkinmateStorage=(()=>{
- const initial={onboarded:false,profile:{concerns:[],fields:[],region:'강남'},draft:{category:'',concern:'',custom:'',priorities:[],budget:'unknown',region:'강남'},saved:[],savedTreatments:{},savedEvents:[],compare:[],selectedTreatment:'',history:[],recentHospitals:[],recentTreatments:[],checklists:{},notifications:false};
+ const initial={community:{likes:[],helpful:[],comments:{}},onboarded:false,profile:{concerns:[],fields:[],region:'강남'},draft:{category:'',concern:'',custom:'',priorities:[],budget:'unknown',region:'강남'},saved:[],savedTreatments:{},savedEvents:[],compare:[],selectedTreatment:'',history:[],recentHospitals:[],recentTreatments:[],checklists:{},notifications:false};
  function clean(raw,D){
   const s=structuredClone(initial);if(!raw||typeof raw!=='object')return s;
   const unique=(v,allowed,max=100)=>[...new Set(Array.isArray(v)?v.filter(x=>allowed.includes(x)):[])].slice(0,max);
@@ -12,6 +12,7 @@ const SkinmateStorage=(()=>{
   s.savedEvents=unique(raw.savedEvents,D.promotions.map(p=>p.id));s.recentTreatments=unique(raw.recentTreatments,tids,20);s.selectedTreatment=tids.includes(raw.selectedTreatment)?raw.selectedTreatment:'';
   s.history=(Array.isArray(raw.history)?raw.history:[]).filter(x=>x&&D.concerns.some(c=>c.id===x.category&&c.items.includes(x.concern))).slice(0,10).map(x=>({...clean({draft:x},D).draft,date:typeof x.date==='string'?x.date.slice(0,30):''}));
   for(const [id,list] of Object.entries(raw.checklists&&typeof raw.checklists==='object'?raw.checklists:{})){if(!hids.includes(id)||!Array.isArray(list?.questions))continue;s.checklists[id]={saved:list.saved===true,questions:list.questions.filter(q=>typeof q?.text==='string'&&q.text.trim()).slice(0,100).map(q=>({text:q.text.slice(0,200),done:q.done===true}))};}
+  const ids=[...D.reviews.map(r=>r.id),...Object.values(D.boards).flat().map(p=>p.id)];s.community.likes=unique(raw.community?.likes,ids);s.community.helpful=unique(raw.community?.helpful,ids);for(const id of ids){const cs=raw.community?.comments?.[id];if(Array.isArray(cs))s.community.comments[id]=cs.filter(x=>typeof x==='string').slice(0,100).map(x=>x.slice(0,500));}
   s.notifications=raw.notifications===true;return s;
  }
  function load(storage,D){try{const raw=storage.getItem('skinmate-v2');if(raw)return clean(JSON.parse(raw),D);const old=JSON.parse(storage.getItem('skinmate-v1')||'null');return clean(old?{saved:old.saved,checklists:old.checklists}:null,D);}catch{return structuredClone(initial);}}

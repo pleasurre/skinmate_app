@@ -36,6 +36,7 @@ const SkinmateData = (() => {
  hospitals.forEach(h=>Object.entries(h.exactOffers).forEach(([id,o])=>{h.offers[id]=[o.price,o.price];}));
  promotions.forEach(p=>{p.originalPrice=hospitals.find(h=>h.id===p.hospitalId).exactOffers[p.treatmentId].originalPrice;});
  const reviews=treatments.flatMap((t,i)=>[0,1].map(n=>({id:`r${i}-${n}`,treatmentId:t.id,hospitalId:n?'h2':'h1',concern:t.concerns[0],category:t.category,price:t.priceRange[n],pain:n?'생각보다 부담이 있었어요':t.painLevel,recovery:t.recoveryTime,date:`2026.09.${String(15-i).padStart(2,'0')}`,satisfaction:n?4:5,text:n?'회복 일정과 추가 비용을 미리 물어보면 좋겠어요.':'제가 중요하게 생각한 조건을 메모해 상담에 가져갔어요.',mock:true})));
- return {concerns,criteria,regions,budgets,treatments,hospitals,promotions,reviews};
+ const boards={qa:[{id:'q1',author:'피부고민중',title:'첫 상담에서 어떤 질문을 하면 좋을까요?',body:'가격과 회복기간 외에 확인할 항목이 궁금해요.'},{id:'q2',author:'맑은하늘',title:'시술 가격 비교할 때 포함 비용도 보나요?',body:'마취와 사후 관리 포함 여부를 어떻게 확인하세요?'},{id:'q3',author:'나의기준',title:'중요한 일정 전에 상담을 받으려고 해요',body:'회복 일정에 대해 어떤 내용을 물어보면 좋을까요?'}],free:[{id:'f1',author:'봄날메이트',title:'상담 전에 질문을 적어봤어요',body:'내 예산과 가능한 방문 날짜를 적으니 고민 정리가 되네요.'},{id:'f2',author:'하루한걸음',title:'오늘은 피부 고민 노트를 시작했어요',body:'급하게 결정하지 않고 천천히 정보를 비교해보려고 해요.'}]};
+ return {concerns,criteria,regions,budgets,treatments,hospitals,promotions,reviews,boards};
 })();
 if(typeof module!=='undefined')module.exports=SkinmateData;
