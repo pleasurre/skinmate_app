@@ -3,7 +3,7 @@ const SkinmateStorage=(()=>{
  function clean(raw,D){
   const s=structuredClone(initial);if(!raw||typeof raw!=='object')return s;
   const unique=(v,allowed,max=100)=>[...new Set(Array.isArray(v)?v.filter(x=>allowed.includes(x)):[])].slice(0,max);
-  s.onboarded=raw.onboarded===true;
+  s.onboarded=raw.onboarded===true;s.auth={loggedIn:raw.auth?.loggedIn===true,email:typeof raw.auth?.email==='string'?raw.auth.email.slice(0,120):''};
   const p=raw.profile||{};s.profile={concerns:unique(p.concerns,D.concerns.flatMap(c=>c.items)),fields:unique(p.fields,D.treatments.map(t=>t.id)),region:D.regions.includes(p.region)?p.region:'강남'};
   const d=raw.draft||{};const cat=D.concerns.find(c=>c.id===d.category);s.draft={category:cat?.id||'',concern:cat?.items.includes(d.concern)?d.concern:'',custom:typeof d.custom==='string'?d.custom.slice(0,100):'',priorities:unique(d.priorities,D.criteria.map(c=>c.id),3),budget:D.budgets.some(b=>b.id===d.budget)?d.budget:'unknown',region:D.regions.includes(d.region)?d.region:'강남'};
   const hids=D.hospitals.map(h=>h.id),tids=D.treatments.map(t=>t.id);
