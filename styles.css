@@ -78,3 +78,14 @@ body,.workspace,.phone,#app,.app-header,.main,.footer-action,.bottom-nav{backgro
 .home-concern-chips .chip{background:var(--surface)}.journal-art{background:#F3E4EC}.journal-card:nth-child(even) .journal-art{background:#FBE3DB}.journal-art svg{color:var(--deep)}
 .explore-search{background:var(--surface);border-color:var(--line)}.promo-art{background:#F3E4EC}.promo-art.aging{background:#FBE3DB}.promo-art.tone{background:#F9EAC0}.promo-art.texture{background:#F4E8EE}.news-card{background:var(--surface);border-color:var(--line)}
 .login-invite,.profile-card{background:var(--surface);border-color:var(--line)}.ad-label{background:#F9EAC0;color:#72573B}.budget-panel,.budget-warning{background:#FBE8E1}
+/* Restore the previous soft sage, mint and coral palette. */
+:root{--teal:#5FAF9F;--deep:#3E8175;--mint:#DDF1EB;--coral:#F3A08D;--surface:#F7FAF9;--paper:#fff;--ink:#263330;--yellow:#F4D98B;--line:#E5ECE9;--muted:#71817B}
+.logo-crop img{filter:brightness(1.06) contrast(1.07);mix-blend-mode:multiply}
+.decision-hero{background:linear-gradient(115deg,#EDF6F2,#DDF1EB);border-color:#C7EEE7}.decision-hero .primary,.primary{background:var(--deep)}.decision-hero .primary:hover,.primary:hover{background:#2F7067}
+.hero-mini,.recommended,.preference.chosen,.info-box{background:var(--surface);border-color:#D0EFE8}.secondary{background:var(--surface);border-color:var(--mint);color:var(--deep)}
+.chip{background:#fff;border-color:#DCEBE7;color:var(--ink)}.chip.active,.compare-table .best-match,.concern.selected{background:var(--mint);border-color:var(--teal);color:var(--deep)}
+.concern-grid .concern:nth-child(7n+1){background:#E4F8F4}.concern-grid .concern:nth-child(7n+2){background:#FFF0EB}.concern-grid .concern:nth-child(7n+3){background:#FFEBe7}.concern-grid .concern:nth-child(7n+4){background:#E7F8F3}.concern .pictogram{background:#C8F1E9;color:var(--deep)}
+.match-score,.match-score b{color:var(--deep)}.recommend-label{background:var(--teal)}.bottom-nav{border-color:#E5F0ED}.nav-item{color:#91AAA4}.nav-item.active{color:var(--teal)}
+.home-concern-chips .chip{background:var(--surface)}.journal-art{background:#DDF1EB}.journal-card:nth-child(even) .journal-art{background:#FBE3DB}.journal-art svg{color:var(--deep)}
+.explore-search{background:var(--surface);border-color:var(--line)}.promo-art{background:#DDF1EB}.promo-art.aging{background:#FBE3DB}.promo-art.tone{background:#FFF4CF}.promo-art.texture{background:#E0EDEB}.news-card{background:var(--surface);border-color:var(--line)}
+.login-invite,.profile-card{background:var(--surface);border-color:var(--line)}.ad-label{background:#FFF0C9;color:#80631D}.budget-panel,.budget-warning{background:#FFF3E9}
