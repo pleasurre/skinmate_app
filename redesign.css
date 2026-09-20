@@ -20,3 +20,6 @@ body{color:var(--ink);background:#f0f8f7;font-family:'Noto Sans KR',sans-serif}.
 .provider-icon img{display:block;width:24px;height:24px;object-fit:contain}.provider-button.kakao{background:#f9e000;border-color:#f9e000}.provider-button.naver{background:linear-gradient(#00db64,#00b86a);border-color:transparent;color:#fff}.naver .provider-icon{color:#fff}.naver .provider-icon img{width:24px;height:24px;object-fit:contain}
 
 .provider-button.kakao{background:#f3dc00;border-color:#f3dc00}.kakao .provider-icon img{mix-blend-mode:normal}.provider-button.naver{background:linear-gradient(#03e866,#03ba66)}.naver .provider-icon svg{fill:#fff;stroke:none}
+
+/* Equal-width controls for onboarding steps with a back button. */
+.onboarding-actions>.primary,.onboarding-actions>.secondary{flex:1 1 0;width:0;min-width:0;min-height:48px;padding:13px 12px}
