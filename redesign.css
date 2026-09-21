@@ -11,8 +11,8 @@ body{color:var(--ink);background:#f0f8f7;font-family:'Noto Sans KR',sans-serif}.
 /* Match the supplied logo paper to the white app surface. */
 .brand-image img,.logo-crop img,.login-logo{filter:brightness(1.12);mix-blend-mode:multiply}
 
-/* Keep every concern visible without horizontal scrolling. */
-.category-tabs{display:flex;flex-wrap:wrap;overflow:visible;gap:8px}.category-tabs .chip{flex:0 0 auto}
+/* Single-row concern navigation. */
+.category-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:8px;cursor:grab;user-select:none;overscroll-behavior-x:contain;scrollbar-width:none}.category-tabs::-webkit-scrollbar{display:none}.category-tabs.dragging,.category-tabs.dragging .chip{cursor:grabbing}.category-tabs .chip{flex:0 0 auto}
 .beauty-event,.offer-photo,.explore-banner,.beauty-hero{background:#eef8f6}
 .journal-card{padding:18px}
 
