@@ -1,0 +1,14 @@
+const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
+const listeners={},els={app:{innerHTML:''},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
+const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f)=>(listeners[n]??=[]).push(f)},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
+vm.createContext(c);const run=s=>vm.runInContext(s,c);
+for(const f of ['data/catalog.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','app.js'])run(fs.readFileSync(f,'utf8'));
+const action=(action,value='')=>listeners.click[0]({target:{closest:()=>({dataset:{action,value}})}});
+run("state.auth.loggedIn=true;screen='onboarding';profileDraft=null;onboardingStep=0;render()");
+assert(els.app.innerHTML.includes('assets/logo.jpg'));assert(!els.app.innerHTML.includes('welcome-photo'));
+action('onboard-next');assert(!run('onboardingReady()'));assert.equal(run('onboardCategories.length'),0);assert(!els.app.innerHTML.includes('관심 시술'));
+action('onboard-category','texture');action('onboard-next');assert(els.app.innerHTML.includes('어떤 고민을 하고 있나요?'));
+action('onboard-concern','피지');action('onboard-concern','블랙헤드');assert.equal(run('profileDraft.concerns.length'),2);action('onboard-next');assert(!run('onboardingReady()'));
+action('onboard-region','잠실');action('onboard-next');action('onboard-next');assert.equal(run('state.profile.region'),'잠실');assert.equal(run('state.profile.concerns.length'),2);assert(els.app.innerHTML.includes('포텐자'));
+run("screen='explore';render()");assert(!els.app.innerHTML.includes('메이트 피부과'));assert(els.app.innerHTML.includes('라움 피부과'));
+console.log('PASS: five-step onboarding, no defaults, multiple concerns, required region, profile persistence, personalized events and regional hospitals');
