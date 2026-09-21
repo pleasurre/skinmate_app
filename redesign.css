@@ -23,3 +23,6 @@ body{color:var(--ink);background:#f0f8f7;font-family:'Noto Sans KR',sans-serif}.
 
 /* Equal-width controls for onboarding steps with a back button. */
 .onboarding-actions>.primary,.onboarding-actions>.secondary{flex:1 1 0;width:0;min-width:0;min-height:48px;padding:13px 12px}
+
+/* Compact app header and proportionally scaled wordmark. */
+.app-header{height:64px;padding:10px 18px}.brand-image{width:140px;height:42px}.brand-image img{width:170px;left:-15px;top:-30px}
