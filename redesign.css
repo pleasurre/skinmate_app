@@ -31,3 +31,8 @@ body{color:var(--ink);background:#f0f8f7;font-family:'Noto Sans KR',sans-serif}.
 
 /* Preserve the coral smile below the wordmark. */
 .brand-image{height:48px}.brand-image img{top:-27px}
+
+/* Keep horizontal card scrolling without a visible scrollbar. */
+.event-rail,.offer-rail,.home-journal{scrollbar-width:none}.event-rail::-webkit-scrollbar,.offer-rail::-webkit-scrollbar,.home-journal::-webkit-scrollbar{display:none}
+
+.my-profile{display:flex;align-items:center;gap:18px;padding:16px 2px 20px}.my-avatar{width:76px;height:76px;border-radius:50%;overflow:hidden;background:var(--mint);flex-shrink:0}.my-avatar img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}.my-profile h1{font-size:22px;margin:0 0 5px}.my-profile p{margin:0;color:#92999d;font-size:14px}.my-edit{min-height:44px}.my-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:24px 0}.my-shortcut{display:flex;flex-direction:column;align-items:center;gap:10px;padding:0}.my-shortcut>span{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:#fff0e7;color:var(--teal)}.my-shortcut b{font-size:12px;font-weight:500;white-space:nowrap}.my-group{border:1px solid var(--line);border-radius:20px;background:#fff;padding:16px;margin:16px 0}.main .my-group h2{font-size:17px;margin:0 0 8px}.my-row{display:flex;align-items:center;justify-content:space-between;width:100%;padding:15px 0;gap:12px;font-size:14px;text-align:left}.my-row+.my-row{border-top:1px solid #f1f4f4}.my-row-label,.my-row-end{display:flex;align-items:center;gap:12px}.my-row-label>svg{color:var(--teal);width:21px}.my-row-end>svg{width:16px;color:#92a3a7}.my-row-end b{font-size:14px;color:var(--teal)}.my-wallet{padding-top:4px;padding-bottom:4px}

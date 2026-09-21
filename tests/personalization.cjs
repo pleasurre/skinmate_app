@@ -1,0 +1,13 @@
+const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
+const listeners={},els={app:{innerHTML:''},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
+const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f)=>(listeners[n]??=[]).push(f)},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
+vm.createContext(c);const run=s=>vm.runInContext(s,c);
+for(const f of ['data/catalog.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','app.js'])run(fs.readFileSync(f,'utf8'));
+run("state.auth.loggedIn=true;state.onboarded=true;state.profile.concerns=['피지'];state.profile.fields=[];state.profile.region='강남';screen='home';render()");
+assert(els.app.innerHTML.includes('포텐자'));
+assert(!els.app.innerHTML.includes('온다리프팅'));
+run("profileDraft=structuredClone(state.profile);profileTreatmentQuery='보톡스'");assert(run('profileTreatmentResults()').includes('보툴리눔 시술'));
+run("state.profile.concerns=['볼살'];render()");assert(els.app.innerHTML.includes('온다리프팅'));assert(!els.app.innerHTML.includes('포텐자'));
+run("screen='my';render()");assert(els.app.innerHTML.includes('Skinmate1님'));assert(els.app.innerHTML.includes('결제 내역'));assert(!els.app.innerHTML.includes('MY SKINMATE'));assert(!els.app.innerHTML.includes('assets/logo.jpg'));
+run("screen='onboarding';onboardingStep=0;render()");assert(!els.app.innerHTML.includes('Hello,'));
+console.log('PASS: personalized sebum/contour events, Botox alias search, My layout and onboarding copy');
