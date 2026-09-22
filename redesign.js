@@ -10,7 +10,7 @@ function header(title){const region=`<label class="region-control">${icon('pin')
 function nav(active){return `<nav class="bottom-nav" aria-label="주요 메뉴">${[['home','home','홈'],['explore','compass','탐색'],['community','chat','커뮤니티'],['saved','bookmark','찜'],['my','user','마이']].map(([s,i,l])=>button(`${icon(i)}<span>${l}</span>`,'navigate',s,`nav-item ${active===s?'active':''}`,active===s?'aria-current="page"':'')).join('')}</nav>`;}
 function photo(i,cls=''){return `<img class="${cls}" src="${portrait(i)}" alt="뷰티 분위기 이미지 예시" loading="lazy">`;}
 const homeFilters={};
-const homePhotoSources=['assets/photos/facial.webp','assets/photos/skin.webp','assets/portraits/mate-2.jpg'];
+const homePhotoSources=['assets/photos/facial.webp','assets/photos/skin.webp'];
 function hospitalPhoto(h){return homePhotoSources[Math.max(0,D.hospitals.findIndex(x=>x.id===h.id))%homePhotoSources.length];}
 function hospitalPhotoPanel(h,large=false){return `<figure class="hospital-photo-panel ${large?'is-detail':''}"><img src="${hospitalPhoto(h)}" alt="피부 관리 분위기 이미지" loading="${large?'eager':'lazy'}" width="900" height="600"><figcaption>Unsplash · 이미지 예시</figcaption></figure>`;}
 
