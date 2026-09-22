@@ -1,11 +1,11 @@
 const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
-const listeners={},els={app:{innerHTML:''},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
+const listeners={},els={app:{innerHTML:'',setAttribute(){}},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
 const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f)=>(listeners[n]??=[]).push(f)},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
 vm.createContext(c);const run=s=>vm.runInContext(s,c);
-for(const f of ['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','app.js'])run(fs.readFileSync(f,'utf8'));
+for(const f of ['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','reference-ui.js','app.js'])run(fs.readFileSync(f,'utf8'));
 const action=(action,value='')=>listeners.click[0]({target:{closest:()=>({dataset:{action,value}})}});
 run("state.auth.loggedIn=true;screen='onboarding';profileDraft=null;onboardingStep=0;render()");
-assert(els.app.innerHTML.includes('assets/logo.jpg'));assert(!els.app.innerHTML.includes('welcome-photo'));
+assert(els.app.innerHTML.includes('wordmark'));assert(!els.app.innerHTML.includes('welcome-photo'));
 action('onboard-next');assert(!run('onboardingReady()'));assert.equal(run('onboardCategories.length'),0);assert(!els.app.innerHTML.includes('관심 시술'));
 action('onboard-category','texture');action('onboard-next');assert(els.app.innerHTML.includes('어떤 고민을 하고 있나요?'));
 action('onboard-concern','피지');action('onboard-concern','블랙헤드');assert.equal(run('profileDraft.concerns.length'),2);action('onboard-next');assert(!run('onboardingReady()'));

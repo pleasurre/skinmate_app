@@ -1,8 +1,8 @@
 const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
-const listeners={},els={app:{innerHTML:''},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
+const listeners={},els={app:{innerHTML:'',setAttribute(){}},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
 const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f)=>(listeners[n]??=[]).push(f)},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
 vm.createContext(c);const run=s=>vm.runInContext(s,c);
-for(const f of ['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','app.js'])run(fs.readFileSync(f,'utf8'));
+for(const f of ['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','reference-ui.js','app.js'])run(fs.readFileSync(f,'utf8'));
 run("state.auth.loggedIn=true;state.onboarded=true;state.profile.concerns=['피지'];state.profile.fields=[];state.profile.region='강남';screen='home';render()");
 assert(run("homeContent().treatments.some(t=>t.id==='potenza')"));
 assert(!els.app.innerHTML.includes('온다리프팅'));
