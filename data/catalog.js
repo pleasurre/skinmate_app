@@ -6,7 +6,7 @@ const SkinmateData = (() => {
   {id:'trouble',name:'트러블·흉터',icon:'dots',items:['여드름','여드름 흉터','붉은 자국','흉터']},
   {id:'texture',name:'모공·피부결',icon:'pore',items:['넓은 모공','피지','블랙헤드','피부결']},
   {id:'tone',name:'색소·톤',icon:'sun',items:['기미','잡티','주근깨','색소침착','홍조','피부톤']},
-  {id:'hair',name:'제모',icon:'wave',items:['얼굴','겨드랑이','팔','다리','기타']},
+  {id:'hair',name:'제모',icon:'wave',items:['얼굴','턱','인중','겨드랑이','팔','다리','브라질리언왁싱','기타']},
   {id:'other',name:'기타',icon:'list',items:['기타 고민']}
  ];
  const criteria=[{id:'effect',name:'효과',icon:'sun',desc:'기대하는 변화 관련 정보'},{id:'price',name:'가격',icon:'coin',desc:'내 예산과 가까운 비용'},{id:'pain',name:'통증',icon:'bolt',desc:'부담이 적은 통증 경험'},{id:'recovery',name:'회복기간',icon:'clock',desc:'일상으로 돌아가는 시간'},{id:'trust',name:'의료진·신뢰',icon:'shield',desc:'의료진과 설명의 충분함'},{id:'distance',name:'거리',icon:'pin',desc:'선호 지역에서의 접근성'}];
@@ -24,7 +24,7 @@ const SkinmateData = (() => {
  ['aqua','모공 클렌징 관리','texture',['넓은 모공','피지','블랙헤드','피부결'],[5,10],'낮음','당일~1일',[70,96,95,98,78],'관리 범위와 지속적인 관리 계획을 확인해요'],
  ['toning','레이저 토닝','tone',['기미','잡티','주근깨','색소침착','피부톤'],[8,18],'낮음','1~2일',[82,88,85,90,85],'색소 원인에 따라 상담이 필요한 후보'],
  ['vascular','홍조 레이저 상담','tone',['홍조','붉은 자국'],[15,28],'중간','3~5일',[83,78,73,77,88],'홍조의 원인과 관리 방법부터 확인해요'],
- ['hairlaser','레이저 제모','hair',['얼굴','겨드랑이','팔','다리','기타'],[5,20],'중간','1~2일',[87,89,73,90,82],'부위와 회차별 비용 차이를 확인해요'],
+ ['hairlaser','레이저 제모','hair',['얼굴','턱','인중','겨드랑이','팔','다리','기타'],[5,20],'중간','1~2일',[87,89,73,90,82],'부위와 회차별 비용 차이를 확인해요'],
  ['consult','피부 고민 상담','other',['기타 고민'],[1,5],'해당 없음','해당 없음',[60,98,100,100,95],'고민을 정리하고 가능한 방법을 상담해요']
  ];
  const treatments=definitions.map(([id,name,category,concerns,priceRange,painLevel,recoveryTime,s,description])=>({id,name,category,concerns,priceRange,painLevel,recoveryTime,description,scores:{effect:s[0],price:s[1],pain:s[2],recovery:s[3],trust:s[4],distance:80},features:['1회 기준 예시','개인별 상담 필요'],source:'학습용 가상 정보'}));
