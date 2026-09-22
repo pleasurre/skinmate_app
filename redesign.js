@@ -83,3 +83,22 @@ function savedEventCard(p){const chosen=comparedEvents.includes(p.id);return `<d
 document.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;if(b.dataset.action==='compare-event-toggle'){const id=b.dataset.value;if(!comparedEvents.includes(id)&&comparedEvents.length>=3)return toast('최대 3개까지 비교할 수 있어요.');comparedEvents=comparedEvents.includes(id)?comparedEvents.filter(x=>x!==id):[...comparedEvents,id];repaint();}if(b.dataset.action==='compare-events'){const list=D.promotions.filter(p=>state.savedEvents.includes(p.id)&&comparedEvents.includes(p.id));if(list.length<2)return;dialog('선택한 이벤트 비교',`<div class="event-comparison">${list.map(p=>`<article><h3>${esc(treatment(p.treatmentId).name)}</h3><p>${esc(hospital(p.hospitalId).name)} · ${esc(p.region)}</p>${offerPrice(p)}<p>${esc(p.detail)}</p><small>${esc(p.ends)}까지 · 가상 이벤트</small></article>`).join('')}</div>`);}});
 
 document.addEventListener('click',e=>{const b=e.target.closest('[data-action="home-filter"]');if(!b)return;const [category,...parts]=b.dataset.value.split(':');const row=b.closest('.home-filter-row'),left=row.scrollLeft;homeFilters[category]=parts.join(':');repaint();const selected=document.querySelector(`[data-action="home-filter"][data-value="${CSS.escape(b.dataset.value)}"]`);if(selected)selected.closest('.home-filter-row').scrollLeft=left;});
+
+const treatmentNotes={
+onda:['윤곽 고민을 상담할 때 확인할 장비 시술 후보예요.','지방·근육·피부 처짐 중 어떤 요인이 주된 고민인지 먼저 확인해요.','적용 부위, 장비 모드, 조사량과 추가 비용은 어떻게 되나요?'],
+inmode:['같은 장비 이름이라도 사용하는 핸드피스와 구성에 따라 상담 내용이 달라져요.','FX 등 정확한 구성과 다른 윤곽 시술과의 차이를 비교해요.','제 고민에 사용하는 구성, 회복 중 관리와 멍 발생 가능성을 설명해 주세요.'],
+botox:['보툴리눔 톡신은 특정 근육의 움직임을 줄이는 주사 시술이에요.','턱선 고민은 근육·지방·골격 등에 따라 접근이 달라져요.','근육과 관련된 고민인가요? 제품·용량·비대칭 등 주의사항은 무엇인가요?'],
+ultrasound:['초음파 에너지를 이용하는 피부 탄력 시술 방식이에요.','고주파 방식과 적용 범위, 회복 계획을 비교해요.','사용 장비와 적용 깊이·샷 수, 피부 상태에 따른 주의사항은 무엇인가요?'],
+rf:['고주파 에너지를 이용하는 탄력 시술 방식이에요.','장비별 구성과 부위, 시술 계획을 확인해요.','어떤 장비를 사용하나요? 마취·팁·사후 관리가 비용에 포함되나요?'],
+care:['트러블은 현재 상태를 확인하고 관리와 치료 계획을 구분하는 것이 먼저예요.','관리만 받는 구성인지 진료와 약물 상담도 포함되는지 확인해요.','염증 상태에서 가능한 관리와 피해야 할 자극, 추가 진료가 필요한가요?'],
+fractional:['피부에 분할된 형태로 레이저를 조사하는 방식으로, 흉터 상담에서 비교하는 후보예요.','흉터의 모양·깊이에 따라 다른 방법을 함께 상담할 수 있어요.','제 흉터 유형에 맞나요? 필요한 횟수와 색소 변화·회복 관리는 어떻게 되나요?'],
+potenza:['장비 이름만으로 시술 구성이 같다고 판단하지 않고 사용 방식과 팁을 확인해요.','모공·피부결 중 원하는 변화와 현재 피부 상태를 함께 상담해요.','어떤 팁과 모드를 사용하나요? 마취·추가 제품 비용과 회복 계획은 무엇인가요?'],
+aqua:['클렌징 관리의 범위와 구성은 병원마다 다를 수 있어요.','피지·블랙헤드 관리와 별도의 치료가 필요한 상태인지 구분해요.','압출이 포함되나요? 민감한 피부에 가능한 구성과 관리 간격은 어떻게 되나요?'],
+toning:['색소 고민에서 비교하는 레이저 시술 후보예요. 기미와 다른 색소 문제는 구분이 필요해요.','기미는 약물·자외선 관리 등을 포함한 계획에서 레이저 여부를 상담해요.','색소의 원인은 무엇인가요? 레이저 외 방법과 색소 악화 가능성도 알려주세요.'],
+vascular:['붉음의 원인과 혈관 상태를 살펴본 뒤 레이저·광 치료 여부를 상담해요.','홍조라는 증상만으로 장비나 횟수를 결정하지 않아요.','제 홍조의 원인은 무엇인가요? 약물이나 생활 관리도 필요한가요?'],
+hairlaser:['레이저를 이용해 원치 않는 털을 줄이는 시술이에요.','피부색·모질·부위에 따라 계획이 달라지고 여러 차례 방문할 수 있어요.','부위 범위와 회차별 비용, 면도 시점과 피부 자극 관리는 어떻게 되나요?'],
+consult:['고민의 원인과 가능한 선택지를 정리하는 진료 상담이에요.','시술이 꼭 필요한지, 관리나 다른 치료 방법은 없는지 함께 물어보세요.','어떤 평가가 필요하고 다음 단계는 무엇인가요?']
+};
+const treatmentSources={botox:'https://www.aad.org/public/cosmetic/wrinkles/botulinum-toxin-faqs',ultrasound:'https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin',rf:'https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin',fractional:'https://www.aad.org/public/diseases/acne/derm-treat/scars/treatment',toning:'https://www.aad.org/public/diseases/a-z/melasma-treatment',vascular:'https://www.aad.org/public/diseases/a-z/skin-conditions-lasers-treat',hairlaser:'https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-faqs'};
+function treatmentEducation(t,full=true){const n=treatmentNotes[t.id];if(!n)return '';return `<div class="treatment-education"><p><b>어떤 시술인가요?</b>${n[0]}</p>${full?`<p><b>비교할 점</b>${n[1]}</p>`:''}<p><b>상담에서 물어보세요</b>${n[2]}</p>${full&&treatmentSources[t.id]?`<a href="${treatmentSources[t.id]}" target="_blank" rel="noopener noreferrer">미국피부과학회 관련 정보</a>`:''}</div>`;}
+function concernTreatmentIntro(){const ts=D.treatments.filter(t=>t.category===state.draft.category&&t.concerns.includes(state.draft.concern));return `<section class="concern-treatment-intro">${section(esc(state.draft.concern)+' · 상담에서 알아볼 시술')}<p class="tiny">고민과 연결된 정보예요. 실제 적합성은 피부 상태를 확인한 뒤 판단해요.</p>${ts.map(t=>`<article><h3>${esc(t.name)}</h3>${treatmentEducation(t)}${button('시술 상세 보기','treatment',t.id,'text-button')}</article>`).join('')||'<p class="info-box">등록된 시술 정보가 아직 없어요. 피부과 상담에서 가능한 방법을 확인해보세요.</p>'}</section>`;}
