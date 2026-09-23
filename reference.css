@@ -156,3 +156,16 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .hospital-review-summary .hospital-review-summary-grid{margin:0;gap:10px 7px}
 .hospital-review-summary .hospital-review-summary-grid>span{font-size:9px;gap:3px}
 .hospital-review-summary .hospital-review-summary-grid b{white-space:nowrap}
+.hospital-detail-event-list{display:grid;gap:9px}
+.hospital-detail-event-list .promotion-card{display:grid;grid-template-columns:78px minmax(0,1fr);width:100%;margin:0;border:1px solid var(--line);border-radius:11px;background:white}
+.hospital-detail-event-list .promotion-card>img,.hospital-detail-event-list .promotion-card>.image-placeholder{width:78px;height:100%;min-height:116px;object-fit:cover;border-radius:0}
+.hospital-detail-event-list .promotion-card .editorial-art{height:100%;min-height:116px;padding:8px;border-radius:0}
+.hospital-detail-event-list .editorial-art>span{display:none}
+.hospital-detail-event-list .editorial-art img{max-width:100%;max-height:65px;object-fit:contain}
+.hospital-detail-event-list .promotion-body{min-width:0;padding:9px}
+.hospital-detail-event-list .promotion-body h2{font-size:12px;line-height:1.4;margin:4px 0}
+.hospital-detail-event-list .promotion-body h3{font-size:12px;line-height:1.4;margin:4px 0}
+.hospital-detail-event-list .promotion-body h3 button{font-size:12px;line-height:1.4;text-align:left;padding:0}
+.hospital-detail-event-list .promotion-body p{font-size:9px;margin:3px 0}
+.hospital-detail-event-list .promotion-body .split-buttons{display:flex;gap:5px;margin-top:6px}
+.hospital-detail-event-list .promotion-body .split-buttons button{flex:1;min-width:0;min-height:29px;padding:4px;font-size:9px}
