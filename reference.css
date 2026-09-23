@@ -130,3 +130,21 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .hospital-review-criteria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding-top:9px;border-top:1px solid var(--line)}
 .hospital-review-criteria>span{display:flex;justify-content:space-between;gap:4px;font-size:9px;color:var(--muted)}
 .hospital-review-criteria .hospital-stars{font-size:10px;letter-spacing:0}
+.hospital-review-summary .hospital-rating-overview{display:grid;grid-template-columns:108px minmax(0,1fr);gap:13px;align-items:center}
+.hospital-rating-overview>div:first-child{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hospital-rating-overview>div:first-child strong{font-size:37px;line-height:1.05;color:var(--ink)}
+.hospital-rating-overview>div:first-child .hospital-stars{font-size:14px;letter-spacing:0}
+.hospital-rating-overview>div:first-child small{margin:0;font-size:9px;color:var(--muted)}
+.hospital-rating-bars{display:grid;gap:7px;min-width:0}
+.hospital-rating-bar{display:grid;grid-template-columns:28px minmax(0,1fr) 30px;gap:5px;align-items:center;font-size:10px}
+.hospital-rating-bar>span{color:#e79822;font-weight:700}
+.hospital-rating-bar .hospital-rating-track{height:7px;border-radius:8px;background:#e5ebed;overflow:hidden}
+.hospital-rating-bar .hospital-rating-track i{display:block;height:100%;border-radius:8px;background:var(--teal)}
+.hospital-rating-bar small{margin:0;text-align:right;font-size:9px;color:var(--muted)}
+.hospital-rating-filters{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:15px -16px;padding:0 16px 5px}
+.hospital-rating-filters::-webkit-scrollbar{display:none}
+.hospital-rating-filter{flex:0 0 auto;min-width:48px;min-height:33px;padding:7px 12px;border:0;border-radius:18px;background:#edf0f2;color:var(--ink);font-size:11px;font-weight:700}
+.hospital-rating-filter.active{background:var(--teal);color:white}
+.hospital-review-list-heading{display:flex;align-items:center;justify-content:space-between;margin:15px 0 10px;font-size:13px}
+.hospital-review-list-heading>span{color:var(--teal)}
+.hospital-review-list-heading small{color:var(--muted);font-size:10px;font-weight:400}
