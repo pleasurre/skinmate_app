@@ -2,6 +2,8 @@ const D=SkinmateData,L=SkinmateLogic;
 let state=SkinmateStorage.load(localStorage,D), screen='home', routeId='', toastTimer;
 D.reviews.push(...(state.userReviews||[]).filter(r=>!D.reviews.some(x=>x.id===r.id)));
 state.auth=state.auth&&typeof state.auth==='object'?{loggedIn:state.auth.loggedIn===true,email:state.auth.email||''}:{loggedIn:false,email:''};
+// Each new app document starts the portfolio entry experience; saved user content remains.
+state.auth={loggedIn:false,email:''};state.onboarded=false;
 let exploreQuery='',exploreCategory='all';
 let profileDraft=null,saveTab='병원',communityFilter='all',budgetMode='all',compareSource='hospitals';
 const routes=['login','onboarding','home','concern','subconcern','hospital-reviews','priority','treatments','treatment','hospitals','detail','compare','explore','article','event','community','saved','my','profile','checklist','activity','settings'];
@@ -39,7 +41,7 @@ document.addEventListener('click',e=>{const el=e.target.closest('[data-action]')
  else if(a==='about')dialog('안녕하세요, Skinmate예요.','<p>개인맞춤 의사결정을 돕는 포트폴리오 체험 앱입니다. 모든 병원·가격·시술 점수·후기는 가상 정보예요. 원본 브랜드 로고와 심볼을 사용합니다.</p>');
  else if(a==='notifications')dialog('알림','<p>새로운 맞춤 콘텐츠와 상담 준비 소식을 여기에서 확인해요.</p>');
  else if(a==='login'){if(state.auth?.loggedIn)go('my');else go('login');}
- else if(a==='login-provider'){if(!['Apple','카카오','네이버','이메일'].includes(v))return;if(update(()=>{state.auth={loggedIn:true,email:v+' 체험'};})){profileDraft=null;onboardCategories=[];onboardingStep=0;profileCategory='';go(state.onboarded?'home':'onboarding');}}
+ else if(a==='login-provider'){if(!['Apple','카카오','네이버','이메일'].includes(v))return;if(update(()=>{state.auth={loggedIn:true,email:v+' 체험'};state.onboarded=false;})){profileDraft=null;onboardCategories=[];onboardingStep=0;profileCategory='';go(state.onboarded?'home':'onboarding');}}
  else if(a==='logout'){if(update(()=>{state.auth={loggedIn:false,email:''};})) {go('my');toast('로그아웃했어요.');}}
  else if(a==='explore-category'){exploreCategory=v;repaint();}
  else if(a==='clear-search'){exploreQuery='';exploreCategory='all';repaint();}

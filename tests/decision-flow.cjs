@@ -1,8 +1,10 @@
 const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
 const listeners={},els={app:{innerHTML:'',setAttribute(){}},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
 const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f,opt)=>(listeners[n]??=[]).push({f,capture:opt===true}),querySelector(){return null}},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
+stored['skinmate-v2']=JSON.stringify({auth:{loggedIn:true},onboarded:true});
 vm.createContext(c);const run=s=>vm.runInContext(s,c);
 const files=['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','reference-ui.js','app.js'];for(const f of files)run(fs.readFileSync(f,'utf8'));
+assert.equal(run('screen'),'login'); // a new launch does not skip entry even with a previous session
 const click=(a,v='')=>{let stop=false;const el={dataset:{action:a,value:v}};for(const {f} of [...listeners.click].sort((a,b)=>Number(b.capture)-Number(a.capture))){if(stop)break;f({target:{closest:selector=>selector==='[data-action]'?el:null},preventDefault(){},stopImmediatePropagation(){stop=true;}});}};
 run("state.auth.loggedIn=true;state.onboarded=true;state.profile.concerns=['여드름 흉터'];state.profile.region='강남';screen='home';render()");
 assert(els.app.innerHTML.includes('여드름 흉터,'));const fallback=els.app.innerHTML;
@@ -39,5 +41,5 @@ click('login-provider','이메일');assert.equal(run('screen'),'onboarding');ass
 click('onboard-next');assert.equal(run('onboardCategories.length'),0);click('onboard-category','contour');click('onboard-next');click('onboard-concern','squareJaw');
 // Onboarding values use display names.
 run("profileDraft.concerns=['사각턱']");click('onboard-next');click('onboard-region','강남');click('onboard-next');click('onboard-next');assert.equal(run('screen'),'home');
-run('restore()');assert.equal(run('screen'),'home');click('logout');assert.equal(run('screen'),'login');click('login-provider','이메일');assert.equal(run('screen'),'home');
-console.log('PASS: replay preserves saved data; first entry, onboarding, return visit, logout/relogin');
+run('restore()');assert.equal(run('screen'),'home');click('logout');assert.equal(run('screen'),'login');click('login-provider','이메일');assert.equal(run('screen'),'onboarding');
+console.log('PASS: replay preserves saved data; new launch login, onboarding, in-app navigation, logout/relogin onboarding');
