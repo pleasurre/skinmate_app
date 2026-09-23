@@ -38,6 +38,7 @@ run("state.activeConcern=null;state.recommendation=null;state.profile.concerns=[
 assert(els.app.innerHTML.includes('색소침착이 고민이라면?'));assert(els.app.innerHTML.includes('팔 레이저 제모가 고민이라면?'));
 const pigmentationSection=els.app.innerHTML.split('data-concern="pigmentation"')[1].split('data-concern="hairRemovalArms"')[0],armsSection=els.app.innerHTML.split('data-concern="hairRemovalArms"')[1].split('관련 이벤트')[0];
 assert(pigmentationSection.includes('색소침착에 레이저를 바로 받아도 되나요?'));assert(armsSection.includes('팔 제모는 몇 회가 필요한가요?'));
+for(const topic of [pigmentationSection,armsSection]){assert(topic.includes('home-concern-recommendations'));assert(topic.includes('home-concern-knowledge'));assert(topic.includes('home-concern-treatments'));assert(topic.includes('home-concern-questions'));}
 assert(pigmentationSection.includes('related-treatment-list')&&armsSection.includes('related-treatment-list'));
 assert(run("homeContent(concernById('pigmentation')).treatments.every(t=>t.concernIds.includes('pigmentation'))"));
 assert(run("homeContent(concernById('hairRemovalArms')).treatments.every(t=>t.concernIds.includes('hairRemovalArms'))"));
