@@ -47,19 +47,23 @@ body{color:var(--ink);background:#f0f8f7;font-family:'Noto Sans KR',sans-serif}.
 
 .edit-conditions{margin-left:auto;align-self:center;text-decoration:underline;text-underline-offset:4px;border:0;background:none;padding:8px 0 8px 14px;font-size:12px;color:var(--teal);white-space:nowrap}.treatment-education{padding:12px 14px;background:#f5f9f8;border-radius:12px;margin:14px 0}.treatment-education p{font-size:12px;line-height:1.85;margin:8px 0;color:#61797e}.treatment-education b{display:block;color:var(--ink);margin-bottom:3px}.treatment-education a{font-size:11px}.concern-treatment-intro article{padding:16px;border:1px solid var(--line);border-radius:16px;margin:14px 0}
 
-/* Open, full-width home portrait; stock photos are served with the app. */
-.app-header:has(+ .main .home-editorial-hero){background:#f5fdf9}
-.home-editorial-hero{position:relative;isolation:isolate;overflow:hidden;margin:-6px -18px 28px;min-height:420px;background:#f5fdf9;border:0;border-radius:0}
-.home-hero-portrait{position:absolute;right:-14%;top:0;width:88%;height:100%;object-fit:cover;object-position:50% 30%;z-index:-2}
-.home-editorial-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#fff 0%,#ffffff00 27%),linear-gradient(90deg,#f5fdf9 2%,#f5fdf9f5 20%,#f5fdf9b5 39%,#f5fdf900 73%)}
-.home-editorial-hero .hero-copy{padding:42px 22px 48px;width:100%;max-width:none}
-.main .home-editorial-hero h1{font-size:30px;line-height:1.38;letter-spacing:-1.4px;margin:8px 0 19px}
-.home-editorial-hero .hero-copy p{font-size:11px;line-height:1.9;color:#35545a;margin:0;width:66%}
-.home-editorial-hero .primary{margin-top:28px;padding:13px 17px;min-height:46px;font-size:12px;box-shadow:0 5px 16px #00737b18}
-.home-editorial-hero .image-label{bottom:26px;right:16px}
+/* Home has one header, layered on the portrait rather than above it. */
+#app[data-screen="home"] .main{padding-top:0}
+.home-editorial-hero{position:relative;isolation:isolate;overflow:hidden;margin:0 -18px 28px;min-height:430px;background:#091b24;border:0;border-radius:0;color:#fff}
+.home-editorial-hero .app-header{position:absolute;inset:0 0 auto;z-index:3;height:66px;padding:10px 18px;background:transparent;color:#fff}
+.home-editorial-hero .wordmark{color:#fff}
+.home-editorial-hero .icon-button{color:#fff}
+.home-editorial-hero .icon-button:hover{background:#ffffff24}
+.home-hero-portrait{position:absolute;right:-12%;top:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;z-index:-2}
+.home-editorial-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#091b24 0%,#091b24ee 20%,#091b2499 44%,transparent 76%),linear-gradient(180deg,#091b2470 0%,transparent 30%,transparent 75%,#091b24bb 100%)}
+.home-editorial-hero .hero-copy{padding:94px 22px 38px;width:100%;max-width:none}
+.main .home-editorial-hero h1{font-size:28px;line-height:1.38;letter-spacing:-1.2px;margin:8px 0 19px;color:#fff;max-width:67%;text-shadow:0 2px 12px #00101855}
+.home-editorial-hero .hero-copy p{font-size:12px;line-height:1.8;color:#e3eff0;margin:0;width:66%;text-shadow:0 1px 8px #00101899}
+.home-editorial-hero .primary{margin-top:27px;padding:13px 17px;min-height:46px;font-size:12px;box-shadow:0 5px 16px #00101866;max-width:260px}
+.home-editorial-hero .image-label{bottom:18px;right:16px;color:#fff}
 .home-photo-link{display:block;border:0;padding:0;width:100%;height:100%;background:transparent;cursor:pointer}.home-photo-link img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .home-card-image>small{pointer-events:none}.hospital-photo-panel{position:relative;overflow:hidden;margin:0 0 18px;border-radius:16px;height:185px;background:var(--mint)}.hospital-photo-panel img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}.hospital-photo-panel figcaption{position:absolute;bottom:10px;right:10px;background:#173c4b80;color:white;border-radius:5px;padding:4px 7px;font-size:9px}.hospital-photo-panel.is-detail{height:285px;border-radius:0;margin:-6px -18px 20px}.detail-hero{margin-top:0}
-@media(max-width:360px){.main .home-editorial-hero h1{font-size:27px}.home-editorial-hero{min-height:405px}.home-editorial-hero .hero-copy{padding-left:18px}.home-editorial-hero .hero-copy p{font-size:10px}}
+@media(max-width:360px){.main .home-editorial-hero h1{font-size:25px}.home-editorial-hero{min-height:410px}.home-editorial-hero .hero-copy{padding-left:18px}.home-editorial-hero .hero-copy p{font-size:11px}}
 
 /* Floating glass capsule navigation, with the original five destinations. */
 .bottom-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:3px;flex-shrink:0;min-height:0;margin:8px 12px max(12px,env(safe-area-inset-bottom));padding:6px;border:1px solid #65737e80;border-radius:999px;background:linear-gradient(150deg,#202a32f5,#111a21fa);box-shadow:inset 0 1px 1px #e9f8ff30,inset 0 -2px 5px #0006,0 7px 20px #172c4126;isolation:isolate}
