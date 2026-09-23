@@ -182,3 +182,13 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .treatment-offer-price{display:flex;align-items:center;flex-wrap:wrap;gap:5px 12px;padding:12px 0;border-top:1px solid var(--line);font-size:11px}
 .treatment-offer-price .offer-price{margin-left:auto}
 .treatment-offer-price small{flex-basis:100%;color:var(--muted);font-size:9px}
+.treatment-detail-section{padding:15px 0;border-bottom:1px solid var(--line)}
+.treatment-detail-section h2{margin:0 0 9px;font-size:15px}
+.treatment-detail-section p,.treatment-detail-section li{font-size:11px;line-height:1.75}
+.treatment-detail-section ul{padding-left:19px;margin:7px 0}
+.treatment-detail-section details summary{color:var(--teal);font-size:11px;font-weight:700;cursor:pointer}
+.treatment-detail-section .source-link{display:inline-block;margin-top:8px;font-size:10px}
+.treatment-detail-section .treatment-hospital-panel{padding:10px}
+.treatment-detail-section .treatment-hospital-panel>img{display:block;width:100%;height:128px;object-fit:cover;border-radius:8px}
+.treatment-detail-section .treatment-hospital-panel>small{display:block;color:var(--muted);font-size:9px;margin:5px 0 9px}
+.treatment-detail-section .treatment-hospital-panel h3{font-size:13px;margin:0}
