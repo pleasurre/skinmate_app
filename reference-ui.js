@@ -38,7 +38,7 @@ document.addEventListener('click',e=>{const el=e.target.closest('[data-action]')
 
 // Touch uses native horizontal scrolling; mouse users can drag the category rail.
 let referenceCategoryDrag=null;
-document.addEventListener('pointerdown',e=>{const rail=e.target.closest('.explore-category-rail,.sub-tabs,.explore-treatment-rail');if(!rail||e.pointerType!=='mouse'||e.button!==0)return;referenceCategoryDrag={rail,x:e.clientX,left:rail.scrollLeft,moved:false};});
+document.addEventListener('pointerdown',e=>{const rail=e.target.closest('.explore-category-rail,.sub-tabs,.explore-treatment-rail,.hospital-event-rail');if(!rail||e.pointerType!=='mouse'||e.button!==0)return;referenceCategoryDrag={rail,x:e.clientX,left:rail.scrollLeft,moved:false};});
 document.addEventListener('pointermove',e=>{if(!referenceCategoryDrag)return;const delta=e.clientX-referenceCategoryDrag.x;if(Math.abs(delta)>5){referenceCategoryDrag.moved=true;referenceCategoryDrag.rail.scrollLeft=referenceCategoryDrag.left-delta;e.preventDefault();}});
 document.addEventListener('pointerup',()=>{const drag=referenceCategoryDrag;referenceCategoryDrag=null;if(drag?.moved){const cancel=e=>{if(drag.rail.contains(e.target)){e.preventDefault();e.stopImmediatePropagation();}};window.addEventListener('click',cancel,{capture:true,once:true});setTimeout(()=>window.removeEventListener('click',cancel,true),0);}});
 document.addEventListener('pointercancel',()=>{referenceCategoryDrag=null;});
