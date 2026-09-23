@@ -200,3 +200,11 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 #app[data-screen="treatment"] .hospital-event-rail .promotion-body p{margin:3px 0;font-size:9px}
 #app[data-screen="treatment"] .hospital-event-rail .offer-price strong{font-size:12px}
 #app[data-screen="treatment"] .hospital-event-rail .promotion-body>.text-button{min-height:30px;padding:4px 0;font-size:9px}
+#app[data-screen="treatment"] .hospital-event-rail .hospital-news-card{flex:0 0 172px;overflow:hidden;border:1px solid var(--line);border-radius:11px;background:white;color:var(--ink);scroll-snap-align:start}
+.hospital-news-placeholder{height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#e7f3f3;color:#567d82;font-size:9px}
+.hospital-news-placeholder svg{width:24px;height:24px}
+.hospital-news-copy{padding:9px}
+.hospital-news-copy .ad-label{font-size:8px}
+.hospital-news-copy h3{margin:5px 0;font-size:11px;line-height:1.45}
+.hospital-news-copy p{margin:4px 0;font-size:9px;line-height:1.55;color:var(--muted)}
+.hospital-news-copy .text-button{min-height:30px;padding:4px 0;font-size:9px;color:var(--teal)}
