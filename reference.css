@@ -192,3 +192,11 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .treatment-detail-section .treatment-hospital-panel>img{display:block;width:100%;height:128px;object-fit:cover;border-radius:8px}
 .treatment-detail-section .treatment-hospital-panel>small{display:block;color:var(--muted);font-size:9px;margin:5px 0 9px}
 .treatment-detail-section .treatment-hospital-panel h3{font-size:13px;margin:0}
+#app[data-screen="treatment"] .hospital-event-rail .promotion-card{flex:0 0 172px;border-radius:11px}
+#app[data-screen="treatment"] .hospital-event-rail .connected-promotion>img{width:100%;height:82px;object-fit:cover}
+#app[data-screen="treatment"] .hospital-event-rail .promotion-body{padding:9px}
+#app[data-screen="treatment"] .hospital-event-rail .promotion-body h3{margin:4px 0;font-size:11px;line-height:1.4}
+#app[data-screen="treatment"] .hospital-event-rail .promotion-body h3 button{padding:0;text-align:left;font-size:11px}
+#app[data-screen="treatment"] .hospital-event-rail .promotion-body p{margin:3px 0;font-size:9px}
+#app[data-screen="treatment"] .hospital-event-rail .offer-price strong{font-size:12px}
+#app[data-screen="treatment"] .hospital-event-rail .promotion-body>.text-button{min-height:30px;padding:4px 0;font-size:9px}
