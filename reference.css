@@ -20,6 +20,9 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .login-page{background:white;color:var(--ink);padding:40px 24px 24px;display:flex;flex-direction:column;justify-content:space-between;gap:25px;height:100%;overflow:auto}.login-brand{text-align:center;padding-top:30px}.login-brand .wordmark{font-size:48px;color:var(--teal);letter-spacing:-2px}.login-brand .brand-m:after{height:8px;border-width:4px;bottom:-6px}.login-entry-label{font-size:12px!important;color:var(--teal)!important;margin:22px 0 8px}.login-brand h1{font-size:23px;line-height:1.5;margin:15px 0}.login-brand p{font-size:12px;color:var(--muted);line-height:1.8}.login-actions{display:grid;gap:10px;width:100%}.provider-button{height:46px;border-radius:24px;font-size:13px;display:flex;justify-content:center;align-items:center;gap:9px}.provider-button.kakao{background:#fee500;border-color:#fee500;color:#191919}.provider-button.kakao .provider-icon{background:transparent}.provider-button.naver{background:#03c75a;color:white;border-color:#03c75a}.provider-button.email{border:1px solid #dfe5e9;color:var(--ink)}.login-disclosure{font-size:10px!important;color:var(--muted);margin:4px 0;text-align:center}.onboard-logo{background:transparent;border-radius:0;display:flex;align-items:center;justify-content:center;height:160px;width:100%;margin:30px 0}.onboard-logo .wordmark{font-size:48px;color:var(--teal);width:auto}.onboard-category{color:var(--ink);background:var(--neutral-chip);border-radius:10px;min-height:100px}.onboard-category.selected{background:#def3f2;color:var(--deep);border-color:var(--teal)}.onboard-categories{gap:10px}.onboard-category b{font-size:12px}.onboard-category .category-illustration{width:37px;height:37px}.onboarding-actions>button{flex:1;width:0}.onboarding-progress{margin:8px 0 24px}.onboard-details h2{font-size:15px}.onboard-location{border:1px solid var(--line);border-radius:8px}.district-option{min-height:45px}.settings-row{font-size:13px}.settings-row>svg{width:20px}
 @media(max-width:760px){body,.workspace{background:white}.workspace{display:block;padding:0;min-height:100dvh}.phone{width:100%;max-width:430px;height:100dvh;max-height:none;min-height:0;border:0;border-radius:0;box-shadow:none;margin:auto}.device-status{display:none}#app{height:100%}.main{padding:10px 16px 22px}.app-header{height:53px;padding-top:max(7px,env(safe-area-inset-top))}.login-page{padding-top:max(30px,env(safe-area-inset-top));padding-bottom:max(22px,env(safe-area-inset-bottom))}}
 @media(max-width:380px){.main .home-editorial-hero h1{font-size:22px}.home-editorial-hero{height:278px;min-height:278px}.reference-categories .decision-category b{font-size:10px}.connected-treatment{grid-template-columns:100px minmax(0,1fr);gap:8px;padding:9px}.connected-treatment>img{width:100px;height:142px}.treatment-copy h2{font-size:15px}.treatment-copy .split-buttons button{font-size:8px}.pref-main b{font-size:9px}.selection-section h2{font-size:16px}}
+
+/* Hospital detail hero image */
+.hospital-photo-panel.is-detail{height:240px}
 .home-editorial-hero .hero-copy{width:100%;height:100%}.home-editorial-hero:after{z-index:0}.home-editorial-hero .home-hero-portrait{z-index:0}.home-editorial-hero .hero-copy{z-index:1}.home-editorial-hero .image-label{z-index:2}.home-card-rail{align-items:flex-start}.home-card-rail>.connected-hospital{height:auto;min-height:0}.home-card-rail .hospital-copy>small{display:none}.home-card-rail .hospital-copy .offer-price{flex-direction:row;align-items:baseline;gap:5px}.home-card-rail .hospital-copy>.muted{display:none}.home-card-rail .hospital-copy .reason-link{min-height:22px;padding:2px 0}.preference{padding:0;gap:0}.provider-button.naver .provider-icon{color:white}.provider-button.naver .provider-icon svg{fill:currentColor;stroke:none}
 .community-tabs{background:var(--app-bg);border-radius:0}.community-tabs button,.community-tabs button.active{background:none;border-radius:0;box-shadow:none;flex:1}.community-tabs button.active{border-bottom:2px solid #62c6c8}.explore-offer .explore-price{flex:0 0 auto;text-align:right}.explore-price del{display:block;font-size:8px;color:var(--muted)}.explore-price strong{font-size:11px}.sub-tabs .chip{padding:5px 10px;min-height:30px}.explore-treatment .chip-row{margin:7px 0 0}
 /* September refinement: anchored brand accents and a continuous editorial header. */
@@ -74,3 +77,56 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .activity-record-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}.activity-record-actions .secondary{min-height:32px;padding:5px 12px;font-size:11px;color:#9a514b;background:#fff;border-color:#e8cdca}.activity-record.is-canceled{background:#f5f6f7}.activity-record.is-canceled small{color:#9a514b}
 .explore-treatment-main{margin-bottom:3px}.explore-treatment-main>div{width:100%}.explore-treatment-main h2{font-weight:750}.explore-hospital-promo{padding:0 0 13px;overflow:hidden;gap:5px;min-height:0;flex-basis:min(82%,265px)}.explore-hospital-promo>.explore-clinic-placeholder{width:100%;height:118px;margin-bottom:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#e7f3f3;color:#567d82;font-size:10px}.explore-clinic-placeholder svg{width:26px;height:26px}.explore-hospital-promo>.explore-promo-label,.explore-hospital-promo>b,.explore-hospital-promo>.explore-promo-title,.explore-hospital-promo>small,.explore-hospital-promo>strong{margin-left:12px;margin-right:12px}.explore-hospital-promo>.explore-promo-title{font-size:11px;line-height:1.5;color:var(--ink)}.explore-hospital-promo>strong{margin-top:6px}.explore-related-card{flex-basis:190px;gap:7px}.explore-related-card>.explore-hospital-promo.compact{padding:0 0 9px;margin-top:4px}.explore-related-card>.explore-hospital-promo.compact>.explore-clinic-placeholder{height:88px}.explore-related-card>.explore-hospital-promo.compact>.explore-promo-label,.explore-related-card>.explore-hospital-promo.compact>b,.explore-related-card>.explore-hospital-promo.compact>.explore-promo-title,.explore-related-card>.explore-hospital-promo.compact>small,.explore-related-card>.explore-hospital-promo.compact>strong{margin-left:9px;margin-right:9px}
 .explore-hospital-rail>.explore-hospital-promo{flex-basis:172px;min-height:0}.explore-hospital-rail>.explore-hospital-promo>.explore-clinic-placeholder{height:82px}.explore-hospital-rail>.explore-hospital-promo>.explore-promo-title{font-size:10px}.explore-popular-caption{margin:14px 0 0;padding:12px 0 7px;border-top:1px solid #e1ebeb;font-size:11px;color:var(--muted)}.explore-results.is-popular{padding-top:4px}
+
+/* Hospital detail tabs and single-column content */
+.hospital-detail-intro{padding:2px 0 18px;color:var(--ink)}
+.hospital-detail-intro h1{font-size:22px;margin:8px 0 6px}
+.hospital-detail-description{font-size:12px;line-height:1.65;margin:0 0 9px;color:var(--ink)}
+.hospital-detail-intro .rating-line{font-size:11px;margin:0 0 9px}
+.hospital-detail-phone{display:flex;align-items:center;gap:7px;margin:0;color:var(--teal);font-size:12px;font-weight:700}
+.hospital-detail-phone svg{width:16px;height:16px}
+.hospital-detail-phone small{font-size:9px;color:var(--muted);font-weight:400}
+.hospital-detail-tabs{display:flex;position:sticky;top:0;z-index:4;margin:0 -16px;padding:0 12px;background:white;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hospital-detail-tab{flex:1;min-width:0;background:transparent;border:0;border-bottom:2px solid transparent;border-radius:0;padding:14px 1px 12px;color:var(--muted);font-size:11px;font-weight:600;white-space:nowrap}
+.hospital-detail-tab.active{border-bottom-color:var(--teal);color:var(--ink);font-weight:750}
+.hospital-detail-tab-body{padding:4px 0 12px}
+.hospital-detail-block{padding:13px 0 4px;border-bottom:1px solid var(--line)}
+.hospital-detail-block:last-child{border-bottom:0}
+.hospital-detail-block h2{font-size:15px;margin:0 0 12px}
+.hospital-detail-block h2 small{font-size:10px;color:var(--muted);font-weight:400}
+.hospital-doctor-card{display:flex;gap:12px;align-items:center;padding:13px;border-radius:12px;background:#f5f9f9}
+.hospital-doctor-icon{width:38px;height:38px;display:grid;place-items:center;flex-shrink:0;border-radius:50%;background:#dcefed;color:var(--teal)}
+.hospital-doctor-icon svg{width:20px;height:20px}
+.hospital-doctor-card b{font-size:12px}
+.hospital-doctor-card p{font-size:10px;color:var(--muted);line-height:1.5;margin:4px 0 0}
+.hospital-hours{padding:2px 3px}
+.hospital-hours>div{display:flex;justify-content:space-between;padding:8px 0;font-size:11px}
+.hospital-hours>div+div{border-top:1px solid var(--line)}
+.hospital-hours span{color:var(--muted)}
+.hospital-feature-chips{display:flex;flex-wrap:wrap;gap:7px;padding:14px 0}
+.hospital-feature-chips span{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:8px 10px;background:#edf7f7;color:#37636a;font-size:10px}
+.hospital-feature-chips svg{width:14px;height:14px}
+.hospital-detail-treatment-list{display:grid;gap:9px}
+.hospital-detail-treatment-list .hospital-treatment-row{width:100%;margin:0;padding:10px;border:1px solid var(--line);border-radius:11px;background:white}
+.hospital-detail-treatment-list .hospital-treatment-row>img{width:74px;height:83px}
+.hospital-detail-treatment-list .hospital-treatment-row h3{margin:0}
+.hospital-detail-treatment-list .hospital-treatment-row p{margin:3px 0}
+.hospital-detail-more{display:block;margin:12px auto 8px;min-height:35px;padding:8px 22px;font-size:11px}
+.hospital-review-summary{padding:14px;border-radius:12px;background:#f5f9f9;margin-bottom:12px}
+.hospital-review-summary>div:first-child{display:flex;gap:6px;align-items:center;font-size:12px}
+.hospital-review-summary strong{font-size:17px}
+.hospital-review-summary small{margin-left:auto;font-size:9px;color:var(--muted)}
+.hospital-stars{letter-spacing:1px;color:#ed8065;white-space:nowrap}
+.hospital-stars span{color:#cbd9dc}
+.hospital-review-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+.hospital-review-summary-grid>span{display:flex;justify-content:space-between;gap:6px;font-size:10px;color:var(--muted)}
+.hospital-review-summary-grid b{color:var(--ink)}
+.hospital-detail-review-list{display:grid;gap:9px}
+.hospital-detail-review{padding:13px;border:1px solid var(--line);border-radius:12px;background:white}
+.hospital-detail-review-head{display:flex;justify-content:space-between;gap:8px;font-size:11px}
+.hospital-detail-review-head>span{color:var(--teal)}
+.hospital-detail-review>small{display:block;margin:5px 0 8px;font-size:9px;color:var(--muted)}
+.hospital-detail-review p{font-size:11px;line-height:1.6;margin:0 0 12px}
+.hospital-review-criteria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding-top:9px;border-top:1px solid var(--line)}
+.hospital-review-criteria>span{display:flex;justify-content:space-between;gap:4px;font-size:9px;color:var(--muted)}
+.hospital-review-criteria .hospital-stars{font-size:10px;letter-spacing:0}
