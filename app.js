@@ -2,8 +2,6 @@ const D=SkinmateData,L=SkinmateLogic;
 let state=SkinmateStorage.load(localStorage,D), screen='home', routeId='', toastTimer;
 D.reviews.push(...(state.userReviews||[]).filter(r=>!D.reviews.some(x=>x.id===r.id)));
 state.auth=state.auth&&typeof state.auth==='object'?{loggedIn:state.auth.loggedIn===true,email:state.auth.email||''}:{loggedIn:false,email:''};
-// Each new app document starts the portfolio entry experience; saved user content remains.
-state.auth={loggedIn:false,email:''};state.onboarded=false;
 let exploreQuery='',exploreCategory='all';
 let profileDraft=null,saveTab='병원',communityFilter='all',budgetMode='all',compareSource='hospitals';
 const routes=['login','onboarding','home','concern','subconcern','hospital-reviews','priority','treatments','treatment','hospitals','detail','compare','explore','article','event','community','saved','my','profile','checklist','activity','settings'];

@@ -4,14 +4,14 @@ const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{g
 stored['skinmate-v2']=JSON.stringify({auth:{loggedIn:true},onboarded:true});
 vm.createContext(c);const run=s=>vm.runInContext(s,c);
 const files=['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','reference-ui.js','app.js'];for(const f of files)run(fs.readFileSync(f,'utf8'));
-assert.equal(run('screen'),'login'); // a new launch does not skip entry even with a previous session
+assert.equal(run('screen'),'home'); // a returning signed-in user stays on the saved route
 const click=(a,v='')=>{let stop=false;const el={dataset:{action:a,value:v}};for(const {f} of [...listeners.click].sort((a,b)=>Number(b.capture)-Number(a.capture))){if(stop)break;f({target:{closest:selector=>selector==='[data-action]'?el:null},preventDefault(){},stopImmediatePropagation(){stop=true;}});}};
 run("state.auth.loggedIn=true;state.onboarded=true;state.profile.concerns=['여드름 흉터'];state.profile.region='강남';screen='home';render()");
 assert(els.app.innerHTML.includes('여드름 흉터,'));const fallback=els.app.innerHTML;
 click('start');assert(els.app.innerHTML.includes('decision-category-grid'));assert(!els.app.innerHTML.includes('subconcern-grid'));
 click('reference-category','contour');assert.equal(run('screen'),'concern');assert(els.app.innerHTML.includes('사각턱'));assert(!els.app.innerHTML.includes('여드름 흉터'));
 click('reference-concern','squareJaw');click('to-priority');for(const k of ['trust','recovery','price'])click('priority',k);click('priority','effect');assert.equal(run('state.draft.priorities.length'),3);click('find');assert.equal(run('state.activeConcern'),'squareJaw');assert.equal(run('screen'),'treatments');assert(els.app.innerHTML.includes('사각턱 보톡스'));assert(!els.app.innerHTML.includes('프락셔널 레이저'));assert(!/일치도|50%|30%|20%/.test(els.app.innerHTML));
-click('decision-hospitals','botox');assert.equal(run('screen'),'hospitals');assert.equal(run('state.selectedTreatment'),'botox');assert(els.app.innerHTML.includes('decision-reason'));
+click('decision-hospitals','botox');assert.equal(run('screen'),'hospitals');assert.equal(run('state.selectedTreatment'),'botox');assert(els.app.innerHTML.includes('decision-reason'));assert((els.app.innerHTML.match(/connected-hospital/g)||[]).length>=4);
 const before=run("L.aggregateReviews('h1','botox').count");const reason=run("ReasonSheetContent('h1','botox')");assert(reason.includes('8건 중'));assert.notEqual(reason,run("ReasonSheetContent('h2','botox')"));
 click('save-offer','h1:botox');assert.equal(run('screen'),'hospitals');assert(run("state.saved.includes('h1')"));click('offer-detail','h1:botox');assert.equal(run('screen'),'detail');assert(els.app.innerHTML.includes('hospital-treatment-row'));assert(!els.app.innerHTML.includes('병원 상세</span>'));assert(!els.app.innerHTML.includes('회복 관련 후기'));click('decision-reviews','h1:botox');assert.equal(run('screen'),'hospital-reviews');assert(els.app.innerHTML.includes('추천에 반영된 평가 보기'));
 assert(run("saveReviewRecord('h1','botox',{overallRating:5,effectRating:5,recoveryRating:5,priceRating:5,painRating:5,doctorTrustRating:5,distanceRating:5,content:'새로운 체험 후기입니다.'})"));assert.equal(run("L.aggregateReviews('h1','botox').count"),before+1);assert(run("SkinmateStorage.clean(JSON.parse(localStorage.getItem('skinmate-v2')),D).userReviews.length===1"));
@@ -30,6 +30,7 @@ const rs=run('structuredClone(D.reviews)');for(const r of rs)if(r.hospitalId==='
 assert.notDeepEqual([...run(`L.rankHospitals(D.hospitals,'botox',${prefs},changedReviews).map(h=>h.id)`)], [...rank1]);
 // Unrelated treatment reviews never affect a hospital/treatment aggregate.
 assert.equal(run("L.aggregateReviews('h1','botox',D.reviews.filter(r=>r.treatmentId==='botox')).count"),run("L.aggregateReviews('h1','botox').count"));
+run("exploreCategory='aging';screen='explore';render()");assert(els.app.innerHTML.includes('함께 많이 받는 시술'));assert(els.app.innerHTML.includes('후기 많은 시술'));assert(els.app.innerHTML.includes('explore-treatment-rail'));assert(!els.app.innerHTML.includes('전체보기'));
 for(const screenName of ['home','explore','community','saved','my','settings','treatments','hospitals']){run(`screen='${screenName}';render()`);assert(!/선호 조건 일치도|Match Score|50%|30%|20%/.test(els.app.innerHTML),screenName);}
 console.log('PASS: concern→treatment→hospital→review→recommendation→Home; priorities, counts, bookmarks, persistence, all pools and images');
 console.log(JSON.stringify(run("({treatments:D.treatments.length,concerns:D.subConcerns.length,hospitalTreatments:D.hospitalTreatments.length,reviews:D.reviews.filter(r=>!r.id.startsWith('local-')).length,categoryCounts:Object.fromEntries(D.concerns.map(c=>[c.name,D.treatments.filter(t=>t.categoryIds.includes(c.id)).length]))})")));
@@ -42,4 +43,4 @@ click('onboard-next');assert.equal(run('onboardCategories.length'),0);click('onb
 // Onboarding values use display names.
 run("profileDraft.concerns=['사각턱']");click('onboard-next');click('onboard-region','강남');click('onboard-next');click('onboard-next');assert.equal(run('screen'),'home');
 run('restore()');assert.equal(run('screen'),'home');click('logout');assert.equal(run('screen'),'login');click('login-provider','이메일');assert.equal(run('screen'),'onboarding');
-console.log('PASS: replay preserves saved data; new launch login, onboarding, in-app navigation, logout/relogin onboarding');
+console.log('PASS: replay preserves saved data; signed-in refresh, onboarding, in-app navigation, logout/relogin');

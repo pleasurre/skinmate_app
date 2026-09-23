@@ -36,7 +36,7 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .home-editorial-hero .app-header .icon-button{width:42px;height:42px;background:transparent;border:1px solid #ffffffa8;border-radius:50%;color:#fff}
 .home-editorial-hero .app-header .icon-button:hover{background:#ffffff1f}
 .home-info-surface{position:relative;z-index:2;border-radius:24px 24px 0 0;margin:0 -16px -22px;padding-top:15px;background:#fff}
-.wordmark .brand-i:before{width:.13em;height:.13em;top:.085em;left:50%;transform:translateX(-50%);background:#ff978a}
+.wordmark .brand-i:before{width:.13em;height:.13em;top:.16em;left:50%;transform:translateX(-50%);background:#ff978a}
 .wordmark .brand-m:after,.login-brand .wordmark .brand-m:after{left:.09em;right:.09em;bottom:-.045em;height:.12em;border:0;border-bottom:.08em solid #ff978a;border-radius:0 0 55% 55%;transform:none}
 
 /* Explore cards use treatment-specific symbols until editorial images are ready. */
@@ -47,3 +47,16 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 /* The curved coral accent is anchored to the letter m at every logo size. */
 .wordmark .brand-m:after,.login-brand .wordmark .brand-m:after{content:none}
 .wordmark .brand-m .brand-smile{position:absolute;left:.05em;bottom:-.12em;width:.9em;height:.25em;overflow:visible;stroke:#ff978a;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;fill:none;pointer-events:none}
+
+.wordmark .brand-m .brand-smile{bottom:.015em}
+.app-header .detail-header-name{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;pointer-events:none}
+
+/* Swipeable subcategories and treatment news cards. */
+.explore-paper .sub-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:7px;white-space:nowrap;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain;touch-action:pan-x pan-y;padding:4px 0 9px}
+.explore-paper .sub-tabs .chip{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap}
+.explore-paper .sub-tabs::-webkit-scrollbar,.explore-treatment-rail::-webkit-scrollbar{display:none}
+.explore-recommendations{margin:18px 0 22px}.explore-recommendations h2{font-size:15px;margin:0 0 10px}
+.explore-treatment-rail{display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain;touch-action:pan-x pan-y;padding:2px 0 8px}
+.explore-related-card{flex:0 0 145px;scroll-snap-align:start;display:flex;flex-direction:column;gap:5px;text-align:left;border:1px solid var(--line);border-radius:11px;padding:8px;background:#fff;color:var(--ink)}
+.explore-related-card .explore-image-placeholder{width:100%;height:87px;gap:4px}.explore-related-card .explore-image-placeholder svg{width:28px;height:28px}.explore-related-card .explore-image-placeholder span{font-size:9px}
+.explore-related-card strong{font-size:12px;line-height:1.4}.explore-related-card small{font-size:10px;color:var(--muted)}
