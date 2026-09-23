@@ -22,6 +22,20 @@ D.hospitals.forEach((h,hi)=>{
 D.promotions=D.promotions.filter(p=>D.hospitalTreatments.some(o=>o.hospitalId===p.hospitalId&&o.treatmentId===p.treatmentId)).map(p=>{const o=D.hospitalTreatments.find(o=>o.hospitalId===p.hospitalId&&o.treatmentId===p.treatmentId);return {...p,price:o.eventPrice??o.price,originalPrice:o.price};});
 // Additional fictional events keep the relationship explicit for each category.
 for(const [tid,hid] of [['botox','h1'],['fractional','h2'],['hairlaser','h1'],['care','h2'],['consult','h1']]){const t=D.treatments.find(t=>t.id===tid),h=D.hospitals.find(h=>h.id===hid),o=D.hospitalTreatments.find(o=>o.hospitalId===hid&&o.treatmentId===tid);o.eventPrice=Math.max(1,o.price-2);h.exactOffers[tid].price=o.eventPrice;h.offers[tid]=[o.eventPrice,o.eventPrice];D.promotions.push({id:'event-'+tid,hospitalId:hid,treatmentId:tid,title:t.name+' 첫 상담 혜택',category:t.category,region:h.location,price:o.eventPrice,originalPrice:o.price,detail:'1회 가상 이벤트 · VAT 포함 · 적용 부위는 상세에서 확인',ends:'2026.12.31'});}
+// Each fictional hospital has at least four distinct treatment events.
+for(const h of D.hospitals){
+ const existing=D.promotions.filter(p=>p.hospitalId===h.id),used=new Set(existing.map(p=>p.treatmentId));
+ const candidates=D.treatments.filter(t=>h.treatments.includes(t.id)&&!used.has(t.id));
+ const categories=['contour','aging','trouble','texture','tone','hair'];
+ while(existing.length<4&&candidates.length){
+  const category=categories.find(c=>!existing.some(p=>p.category===c)&&candidates.some(t=>t.category===c));
+  const index=Math.max(0,candidates.findIndex(t=>t.category===category));
+  const t=candidates.splice(index,1)[0],o=D.hospitalTreatments.find(row=>row.hospitalId===h.id&&row.treatmentId===t.id);
+  o.eventPrice=Math.max(1,o.price-2);h.exactOffers[t.id].price=o.eventPrice;h.offers[t.id]=[o.eventPrice,o.eventPrice];
+  const p={id:`event-${h.id}-${t.id}`,hospitalId:h.id,treatmentId:t.id,title:`${t.name} 첫 방문 혜택`,category:t.category,region:h.location,price:o.eventPrice,originalPrice:o.price,detail:`${t.name} 1회 가상 이벤트 · VAT 포함 · 적용 범위는 상담 시 확인`,ends:'2026.12.31'};
+  D.promotions.push(p);existing.push(p);
+ }
+}
 D.hospitalTreatments.forEach(o=>{const base=o.eventPrice??o.price;o.areaPrices=Object.fromEntries(o.targetAreas.map((area,i)=>[area,base+(D.treatments.find(t=>t.id===o.treatmentId).categoryIds.includes('hair')?i*2:0)]));});
 // Each template is an explicit mock review cohort, not an algorithm score.
 const profiles=[ [5,4,3,3,5,4], [4,5,5,4,4,5], [4,4,5,4,3,4], [5,4,4,5,4,3], [4,5,4,4,5,4], [5,5,5,5,5,5] ];
