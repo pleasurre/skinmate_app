@@ -79,6 +79,7 @@ document.addEventListener('click',e=>{const el=e.target.closest('[data-action]')
  else if(a==='profile-concern'||a==='profile-field'){const k=a==='profile-concern'?'concerns':'fields';profileDraft[k]=profileDraft[k].includes(v)?profileDraft[k].filter(x=>x!==v):[...profileDraft[k],v];repaint();}
  else if(a==='save-profile'||a==='skip-onboarding'){const first=!state.onboarded;if(update(()=>{if(a==='save-profile')state.profile=structuredClone(profileDraft);state.onboarded=true;})){profileDraft=null;communityFilter='all';go(first?'home':'my');}}
  else if(a==='community-filter'){communityFilter=v;history.replaceState({...history.state,communityFilter},'');repaint();}
+ else if(a==='cancel-booking'||a==='cancel-payment'){const key=a==='cancel-booking'?'bookings':'payments',index=Number(v),record=state[key]?.[index];if(!Number.isInteger(index)||index<0||!record||record.status==='canceled')return;if(update(()=>{state[key][index]={...record,status:'canceled',canceledAt:new Date().toISOString()};})){repaint();toast(a==='cancel-booking'?'예약을 취소했어요. 지난 예약에서 확인할 수 있어요.':'체험 결제를 취소했어요.');}}
  else if(a==='activity'||a==='settings')go(a,v);
  else if(a==='checklist'||a==='open-checklist'){const id=a==='checklist'?routeId:v;if(!hospital(id))return;go('checklist',id);update(()=>{state.checklists[id]=getList();});}
  else if(a==='delete-question'){update(()=>{const l=getList();l.questions.splice(Number(v),1);state.checklists[routeId]=l;});repaint();}
