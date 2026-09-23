@@ -38,3 +38,8 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .home-info-surface{position:relative;z-index:2;border-radius:24px 24px 0 0;margin:0 -16px -22px;padding-top:15px;background:#fff}
 .wordmark .brand-i:before{width:.13em;height:.13em;top:.085em;left:50%;transform:translateX(-50%);background:#ff978a}
 .wordmark .brand-m:after,.login-brand .wordmark .brand-m:after{left:.09em;right:.09em;bottom:-.045em;height:.12em;border:0;border-bottom:.08em solid #ff978a;border-radius:0 0 55% 55%;transform:none}
+
+/* Explore cards use treatment-specific symbols until editorial images are ready. */
+.explore-image-placeholder{width:108px;height:113px;flex-shrink:0;border-radius:7px;background:#e8f4f5;color:#007f8b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px}
+.explore-image-placeholder svg{width:38px;height:38px;stroke-width:1.6}
+.explore-image-placeholder span{font-size:10px;font-weight:600;color:#456b74}
