@@ -1,6 +1,6 @@
 const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
-const listeners={},els={app:{innerHTML:'',setAttribute(){}},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
-const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f,opt)=>(listeners[n]??=[]).push({f,capture:opt===true}),querySelector(){return null}},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
+const listeners={},els={app:{innerHTML:'',setAttribute(){}},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={},session={'skinmate-login-session':'active'};
+const c={structuredClone,console,setTimeout(){},clearTimeout(){},sessionStorage:{getItem:k=>session[k]||null,setItem:(k,v)=>session[k]=v,removeItem:k=>delete session[k]},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f,opt)=>(listeners[n]??=[]).push({f,capture:opt===true}),querySelector(){return null}},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
 stored['skinmate-v2']=JSON.stringify({auth:{loggedIn:true},onboarded:true});
 vm.createContext(c);const run=s=>vm.runInContext(s,c);
 const files=['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','reference-ui.js','app.js'];for(const f of files)run(fs.readFileSync(f,'utf8'));
@@ -45,5 +45,5 @@ click('onboard-next');assert.equal(run('onboardCategories.length'),0);click('onb
 // Onboarding values use display names.
 run("profileDraft.concerns=['사각턱']");click('onboard-next');click('onboard-region','강남');click('onboard-next');click('onboard-next');assert.equal(run('screen'),'home');
 run('restore()');assert.equal(run('screen'),'home');click('logout');assert.equal(run('screen'),'login');click('login-provider','이메일');assert.equal(run('screen'),'onboarding');
-run("state=SkinmateStorage.load({getItem(){return null}},D);restore()");assert.equal(run('screen'),'login');assert(els.app.innerHTML.includes('로그인 · 회원가입'));
+run("sessionStorage.removeItem('skinmate-login-session');state=SkinmateStorage.load(localStorage,D);restore()");assert.equal(run('screen'),'login');assert.equal(run('state.auth.loggedIn'),true);run("state=SkinmateStorage.load({getItem(){return null}},D);restore()");assert.equal(run('screen'),'login');assert(els.app.innerHTML.includes('로그인 · 회원가입'));
 console.log('PASS: replay preserves saved data; signed-in refresh, onboarding, in-app navigation, logout/relogin');

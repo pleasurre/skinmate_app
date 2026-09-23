@@ -33,7 +33,7 @@ document.addEventListener('click',e=>{const el=e.target.closest('[data-action]')
  if(a==='reference-category'&&D.concerns.some(c=>c.id===v)){if(update(()=>{state.draft.category=state.draft.category===v?'':v;state.draft.concern='';delete state.draft.concernId;state.draft.priorities=[];state.selectedTreatment='';}))repaint();}
  if(a==='reference-concern'){const c=concernById(v);if(c?.categoryId===state.draft.category&&update(()=>{const deselect=state.draft.concernId===c.id;state.draft.concern=deselect?'':c.name;if(deselect)delete state.draft.concernId;else state.draft.concernId=c.id;state.draft.priorities=[];state.selectedTreatment='';}))repaint();}
  if(a==='reference-sort'){hospitalSort=v;repaint();}
- if(a==='replay-entry'){if(update(()=>{state.auth={loggedIn:false,email:''};state.onboarded=false;state.activeConcern=null;state.activeConcernCategory=null;state.recommendation=null;state.draft=structuredClone(SkinmateStorage.initial.draft);state.history=[];})){profileDraft=null;onboardCategories=[];onboardingStep=0;go('login');}}
+ if(a==='replay-entry'){if(update(()=>{state.auth={loggedIn:false,email:''};state.onboarded=false;state.activeConcern=null;state.activeConcernCategory=null;state.recommendation=null;state.draft=structuredClone(SkinmateStorage.initial.draft);state.history=[];})){profileDraft=null;onboardCategories=[];onboardingStep=0;setLoginSession(false);go('login');}}
 },true);
 
 // Touch uses native horizontal scrolling; mouse users can drag the category rail.

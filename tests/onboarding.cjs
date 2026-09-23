@@ -1,6 +1,6 @@
 const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
-const listeners={},els={app:{innerHTML:'',setAttribute(){}},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={};
-const c={structuredClone,console,setTimeout(){},clearTimeout(){},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f)=>(listeners[n]??=[]).push(f)},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
+const listeners={},els={app:{innerHTML:'',setAttribute(){}},main:{scrollTop:0,focus(){}},toast:{classList:{add(){},remove(){}}}},stored={},session={'skinmate-login-session':'active'};
+const c={structuredClone,console,setTimeout(){},clearTimeout(){},sessionStorage:{getItem:k=>session[k]||null,setItem:(k,v)=>session[k]=v,removeItem:k=>delete session[k]},localStorage:{getItem:k=>stored[k]||null,setItem:(k,v)=>stored[k]=v},document:{getElementById:id=>els[id],addEventListener:(n,f)=>(listeners[n]??=[]).push(f)},window:{addEventListener(){}},history:{state:null,replaceState(){},pushState(){}},location:{hash:''}};
 vm.createContext(c);const run=s=>vm.runInContext(s,c);
 for(const f of ['data/catalog.js','data/relations.js','services/recommendations.js','services/storage.js','components.js','views.js','redesign.js','decision-ui.js','reference-ui.js','app.js'])run(fs.readFileSync(f,'utf8'));
 const action=(action,value='')=>listeners.click[0]({target:{closest:()=>({dataset:{action,value}})}});
