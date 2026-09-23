@@ -148,3 +148,6 @@ body,.workspace{background:#14212a}.workspace{padding:24px;gap:0}.brand-panel,.r
 .hospital-review-list-heading{display:flex;align-items:center;justify-content:space-between;margin:15px 0 10px;font-size:13px}
 .hospital-review-list-heading>span{color:var(--teal)}
 .hospital-review-list-heading small{color:var(--muted);font-size:10px;font-weight:400}
+#app[data-screen="community"] .main{background:var(--app-bg)}
+#app[data-screen="saved"],#app[data-screen="my"]{background:var(--app-bg)}
+#app[data-screen="saved"] .main,#app[data-screen="my"] .main{border-radius:12px 12px 0 0}
