@@ -48,9 +48,10 @@ body{color:var(--ink);background:#f0f8f7;font-family:'Noto Sans KR',sans-serif}.
 .edit-conditions{margin-left:auto;align-self:center;text-decoration:underline;text-underline-offset:4px;border:0;background:none;padding:8px 0 8px 14px;font-size:12px;color:var(--teal);white-space:nowrap}.treatment-education{padding:12px 14px;background:#f5f9f8;border-radius:12px;margin:14px 0}.treatment-education p{font-size:12px;line-height:1.85;margin:8px 0;color:#61797e}.treatment-education b{display:block;color:var(--ink);margin-bottom:3px}.treatment-education a{font-size:11px}.concern-treatment-intro article{padding:16px;border:1px solid var(--line);border-radius:16px;margin:14px 0}
 
 /* Open, full-width home portrait; stock photos are served with the app. */
-.home-editorial-hero{position:relative;isolation:isolate;overflow:hidden;margin:-6px -18px 28px;min-height:420px;background:#fff;border:0;border-radius:0}
-.home-hero-portrait{position:absolute;right:-8%;top:0;width:90%;height:100%;object-fit:cover;object-position:50% 32%;z-index:-2}
-.home-editorial-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#fff 0%,#ffffff00 25%),linear-gradient(90deg,#fff 2%,#fffffff5 20%,#ffffffb5 39%,#ffffff00 70%)}
+.app-header:has(+ .main .home-editorial-hero){background:#f5fdf9}
+.home-editorial-hero{position:relative;isolation:isolate;overflow:hidden;margin:-6px -18px 28px;min-height:420px;background:#f5fdf9;border:0;border-radius:0}
+.home-hero-portrait{position:absolute;right:-14%;top:0;width:88%;height:100%;object-fit:cover;object-position:50% 30%;z-index:-2}
+.home-editorial-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#fff 0%,#ffffff00 27%),linear-gradient(90deg,#f5fdf9 2%,#f5fdf9f5 20%,#f5fdf9b5 39%,#f5fdf900 73%)}
 .home-editorial-hero .hero-copy{padding:42px 22px 48px;width:100%;max-width:none}
 .main .home-editorial-hero h1{font-size:30px;line-height:1.38;letter-spacing:-1.4px;margin:8px 0 19px}
 .home-editorial-hero .hero-copy p{font-size:11px;line-height:1.9;color:#35545a;margin:0;width:66%}
