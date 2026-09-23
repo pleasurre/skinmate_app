@@ -47,7 +47,7 @@ console.log(JSON.stringify(run("({treatments:D.treatments.length,concerns:D.subC
 
 // Entry replay keeps bookmarks/reviews and forces the full onboarding flow.
 const savedBefore=JSON.stringify(run('state.saved')), reviewsBefore=run('state.userReviews.length');
-click('replay-entry');assert.equal(run('screen'),'login');assert(els.app.innerHTML.includes('로그인 · 회원가입'));assert.equal(JSON.stringify(run('state.saved')),savedBefore);assert.equal(run('state.userReviews.length'),reviewsBefore);
+click('logout');assert.equal(run('screen'),'login');assert(els.app.innerHTML.includes('로그인 · 회원가입'));assert.equal(JSON.stringify(run('state.saved')),savedBefore);assert.equal(run('state.userReviews.length'),reviewsBefore);
 click('login-provider','이메일');assert.equal(run('screen'),'onboarding');assert.equal(run('onboardingStep'),0);
 click('onboard-next');assert.equal(run('onboardCategories.length'),0);click('onboard-category','contour');click('onboard-next');click('onboard-concern','squareJaw');
 // Onboarding values use display names.
